@@ -2,7 +2,7 @@
 ### Quantification of causal links by CCM analysis
 ### Last Updated Apr. 12, 2021
 rm(list = ls())
-# Empirical dynamical modeling for CCM analysis was based on 'rEDM' package (v0.7.4) that is available on https://github.com/ha0ye/rEDM/releases/tag/v0.7.4
+# Empirical dynamical modeling for CCM analysis was based on 'rEDM' package (v1.2.3) that is available on https://github.com/cran/rEDM/releases?after=1.5.0
 library('rEDM') 
 library('Kendall') # Kendall's tau test for the convergence of CCM
 library('tidyr')
