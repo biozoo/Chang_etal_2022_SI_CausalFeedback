@@ -1,6 +1,6 @@
 ### CHANG_ETAL_SUPPLEMENTARY_INFORMATION_RCODE - Full R Code
 ### Quantification of causal links by CCM analysis
-### Updated in Oct. 25, 2021
+### Updated in Feb 3, 2022
 rm(list = ls())
 # Empirical dynamical modeling for CCM analysis was based on 'rEDM' package (v1.2.3) that is available on https://github.com/cran/rEDM/releases/tag/1.2.3
 library('rEDM') 
