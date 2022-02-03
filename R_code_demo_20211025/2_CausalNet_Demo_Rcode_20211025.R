@@ -1,6 +1,6 @@
 ### CHANG_ETAL_SUPPLEMENTARY_INFORMATION_RCODE - Full R Code
 ### Cross-system comparison among quantitative causal networks
-### Updated in Oct. 25, 2021
+### Updated in Feb. 3, 2022
 rm(list = ls())
 library('rEDM') # Empirical dynamical modeling for CCM analysis
 library('tidyr')
@@ -59,14 +59,13 @@ lik.name=c("BD->EF","BD->NO3","BD->PO4",
             "PO4->EF","EF->BD","EF->NO3",
             "EF->PO4",'Temp->BD','Temp->EF')
 
-causalLK=causalLK.c=causalLK.sd=matrix(NA,length(sys),length(lik))
+causalLK=causalLK.c=matrix(NA,length(sys),length(lik))
 for(i in 1:length(lik)){
   causalLK[,i]=filter(istd,Cause==lik.vab[i,1]&Effect==lik.vab[i,2])[,'Std_L_strength']
   causalLK.c[,i]=filter(istd,Cause==lik.vab[i,1]&Effect==lik.vab[i,2])[,'Convergence']
-  causalLK.sd[,i]=filter(istd,Cause==lik.vab[i,1]&Effect==lik.vab[i,2])[,'SD_std']
 }
-colnames(causalLK)=colnames(causalLK.c)=colnames(causalLK.sd)=lik.name
-rownames(causalLK)=rownames(causalLK.c)=rownames(causalLK.sd)=sys
+colnames(causalLK)=colnames(causalLK.c)=lik.name
+rownames(causalLK)=rownames(causalLK.c)=sys
 causalLK.c[is.na(causalLK.c)]=FALSE
 
 
