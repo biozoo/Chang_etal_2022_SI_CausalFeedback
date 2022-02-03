@@ -157,6 +157,7 @@ for(i in 1:nrow(indmat)){
   rho.it=x_xmap_y2[,'rho'];rho.it[rho.it<0]=0
   uncertain.i=rbind(uncertain.i,c(lag=best.lag,SD=sd(rho.it,na.rm=T)))
   ccmda=rbind(ccmda,ccmda.olag)
+  cat("\r",i/nrow(indmat)*100,"%")
 }
 ccmda=data.frame(indmat,ccmda)
 rownames(ccmda)=NULL
