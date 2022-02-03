@@ -98,6 +98,7 @@ for(i in 1:nrow(indmat)){
 lib_siz=sort(c(5,10,20,30,40,seq(50,n,50),n)) # a sequence of library size
 #lib_siz=sort(c(5,10,20,30,40,seq(50,n,50),184,292,n)) # a sequence of library size
 ccmda=uncertain.i=NULL
+rho.i=NULL
 for(i in 1:nrow(indmat)){
   ccmda.t=NULL
   
@@ -155,6 +156,7 @@ for(i in 1:nrow(indmat)){
                    num_samples = 500,replace=T)
   
   rho.it=x_xmap_y2[,'rho'];rho.it[rho.it<0]=0
+  rho.i=cbind(rho.i,rho.it)
   uncertain.i=rbind(uncertain.i,c(lag=best.lag,SD=sd(rho.it,na.rm=T)))
   ccmda=rbind(ccmda,ccmda.olag)
   cat("\r",i/nrow(indmat)*100,"%")
