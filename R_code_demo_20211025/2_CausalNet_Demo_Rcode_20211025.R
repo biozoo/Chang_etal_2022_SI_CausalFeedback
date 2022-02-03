@@ -126,46 +126,6 @@ margin = theme(plot.margin = unit(c(1,1,1,1), "cm"))
 grid.arrange(grobs = lapply(pl, "+", margin),nrow=1,newpage = F)
 
 
-#########################################################
-########Bar plot strength list all systems (Fig. S3)
-# Causal Effects on Biomass
-#A function to add arrows on the chart
-error.bar <- function(x, y, upper, lower=upper, rang=NULL, length=0.025,...){
-  upp=y+upper;loo=y-lower;
-  if(!is.null(rang)){upp[upp>rang[2]]=rang[2];loo[loo<rang[1]]=rang[1]}
-  arrows(x,upp, x, loo, angle=90, code=3, length=length, ...)
-}
-
-
-win.graph(35,60)
-par(mfcol=c(4,1),mar=c(4,4,1,1))
-caca=c("orange","Yellow",'red',"black")
-barmat=t(as.matrix(causalLK.ef[,-1]))[c("BD->EF","Temp->EF","NO3->EF","PO4->EF"),];colnames(barmat)=sys
-barmat.sd=t(as.matrix(causalLK.sd))[c("BD->EF","Temp->EF","NO3->EF","PO4->EF"),];colnames(barmat.sd)=sys
-ph1=barplot(barmat[,1:10],beside=T,col=caca,ylim=c(0,1.1),xlab="",ylab="Loop weight", main='Drivers of Biomass')
-error.bar(ph1,barmat[,1:10], barmat.sd[,1:10],rang=c(0,1))
-abline(h=0)
-legend('topright',c("BD->EF","Temp->EF","NO3->EF","PO4->EF"),lty=1,col=caca,cex=0.75,lwd=5,bty='n')
-ph2=barplot(barmat[,11:19],beside=T,col=caca,ylim=c(0,1.1),xlab="System",ylab="Loop weight")
-error.bar(ph2,barmat[,11:19], barmat.sd[,11:19],rang=c(0,1))
-abline(h=0)
-
-# Causal Effects on Species Richness
-caca=c("green","Yellow",'red',"black")
-barmat=t(as.matrix(causalLK.bd[,-1]))[c("EF->BD","Temp->BD","NO3->BD","PO4->BD"),];colnames(barmat)=sys
-barmat.sd=t(as.matrix(causalLK.sd[,-1]))[c("EF->BD","Temp->BD","NO3->BD","PO4->BD"),];colnames(barmat.sd)=sys
-
-ph1=barplot(barmat[,1:10],beside=T,col=caca,ylim=c(0,1.1),xlab="",ylab="Loop weight", main='Drivers of diversity')
-error.bar(ph1,barmat[,1:10], barmat.sd[,1:10],rang=c(0,1))
-abline(h=0)
-legend('topright',c("EF->BD","Temp->BD","NO3->BD","PO4->BD"),lty=1,col=caca,cex=0.75,lwd=5,bty='n')
-ph2=barplot(barmat[,11:19],beside=T,col=caca,ylim=c(0,1.1),xlab="System",ylab="Loop weight")
-error.bar(ph2,barmat[,11:19], barmat.sd[,11:19],rang=c(0,1))
-abline(h=0)
-
-
-
-
 #############################
 #Pairwise feedback
 PFD.name=c('Richness<->Biomass','Richness<->NO3','Richness<->PO4','NO3<->Biomass','PO4<->Biomass')
@@ -306,8 +266,6 @@ windows()
 pfd.d
 # the number of systems showing positive difference in linkage strength ('->' is stronger than '<-')
 apply(dpfd[,-1]>0,2,sum)
-
-
 
 
 #################################################################################
