@@ -154,7 +154,7 @@ for(i in 1:nrow(indmat)){
                    lib_sizes = ccmda.olag['lib_size'], tp=0,RNGseed = seed,
                    num_samples = 500,replace=T)
   
-  rho.it=x_xmap_y2[,'rho'];#rho.it[rho.it<0]=0
+  rho.it=x_xmap_y2[,'rho'];rho.it[rho.it<0]=0
   uncertain.i=rbind(uncertain.i,c(lag=best.lag,SD=sd(rho.it,na.rm=T)))
   ccmda=rbind(ccmda,ccmda.olag)
 }
