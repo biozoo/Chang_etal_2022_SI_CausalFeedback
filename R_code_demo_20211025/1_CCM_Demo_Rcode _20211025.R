@@ -163,6 +163,7 @@ for(i in 1:nrow(indmat)){
 }
 ccmda=data.frame(indmat,ccmda)
 rownames(ccmda)=NULL
+colnames(rho.i)=apply(indmat[,c('Cause','Effect')],1,paste,collapse='->')
 uncertain.i=data.frame(system=rep('Ks9',nrow(indmat)),indmat,uncertain.i)
 Convergence=ccmda$p_Z<0.05 & ccmda$Kendall_p<=0.05 & ccmda$Kendall_tau>0
 ccmda=data.frame(ccmda,Convergence)
@@ -170,7 +171,7 @@ ccmda=data.frame(ccmda,Convergence)
 # Standardized linkage strength by dividing the maximal linkage strength within the a system
 (linkM.std=data.frame(system=rep('Ks9',nrow(indmat)),ccmda[,c('Cause','Effect','rho_Lmax','p_Z','Kendall_tau','Kendall_p','Convergence')],
                      Std_L_strength=ccmda$rho_Lmax/max(ccmda$rho_Lmax[1:12]),
-                     SD=uncertain.i[,'SD'],SDstd=uncertain.i[,'SD']/max(ccmda$rho_Lmax[1:12])))
+                     SD=apply(rho.i,2,sd),SDstd=apply(t(apply(rho.i,1,function(x){x/max(x,na.rm=T)})),2,sd)))
 write.csv(linkM.std,'ccmda_Ks9_demo.csv',row.names=F)
 
 ############################################################################################
